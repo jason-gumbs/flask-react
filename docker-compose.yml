@@ -1,7 +1,6 @@
 version: '3.7'
 
 services:
-
   users:
     build:
       context: ./services/users
@@ -27,3 +26,13 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
+  nginx:
+    build:
+      context: ./services/nginx
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - users
